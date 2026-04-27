@@ -1,0 +1,18 @@
+[
+  {
+    "id": "t1",
+    "stageId": "talks",
+    "date": "2027-05-01",
+    "time": "10:00",
+    "title": "Opening Keynote - European Digital Sovereignty",
+    "presenter": "European Commission"
+  },
+  {
+    "id": "w1",
+    "stageId": "workshop",
+    "date": "2027-05-01",
+    "time": "10:00",
+    "title": "Workshop - Build a VPN with WireGuard",
+    "presenter": "WireGuard"
+  }
+]

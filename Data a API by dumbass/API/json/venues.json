@@ -1,0 +1,17 @@
+[
+  {
+    "id": "talks",
+    "type": "large",
+    "name": "Talk Hall - Large Stage"
+  },
+  {
+    "id": "workshop",
+    "type": "medium",
+    "name": "Workshop Hall - Medium Stage"
+  },
+  {
+    "id": "games",
+    "type": "small",
+    "name": "Game-Demo Hall - Small Stage"
+  }
+]

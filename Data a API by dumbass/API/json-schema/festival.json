@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Festival Schema",
+  "type": "object",
+  "properties": {
+    "name": { "type": "string" },
+    "edition": { "type": "integer" },
+    "location": { "type": "string" },
+    "startDate": { "type": "string", "format": "date" },
+    "endDate": { "type": "string", "format": "date" }
+  },
+  "required": ["name", "edition", "location", "startDate", "endDate"]
+}

@@ -1,0 +1,163 @@
+openapi: 3.1.0
+info:
+  title: European Open-Source & Alternative Tech Fair API
+  version: 1.0.0
+  description: API festivalu
+servers:
+  - url: http://localhost:8080/api
+    description: Lokální vývojový server
+paths:
+  /festival:
+    get:
+      summary: Získat základní informace o festivalu
+      responses:
+        '200':
+          description: Vrácení dat o festivalu
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Festival'
+  /venues:
+    get:
+      summary: Seznam všech scén a hal (venues)
+      responses:
+        '200':
+          description: Úspěšné vrácení seznamu
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Venue'
+  /venues/{id}:
+    get:
+      summary: Detail konkrétní scény
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Detail scény
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Venue'
+  /performers:
+    get:
+      summary: Seznam všech vystavovatelů a startupů
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: Stránkovaný seznam vystavovatelů
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Performer'
+  /performers/{id}:
+    get:
+      summary: Detail vystavovatele podle ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Detail vystavovatele
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Performer'
+  /events:
+    get:
+      summary: Program festivalu
+      parameters:
+        - name: day
+          in: query
+          description: Filtr podle data (např. 2025-05-01)
+          schema:
+            type: string
+            format: date
+        - name: venueId
+          in: query
+          description: Filtr podle ID scény
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Úspěšné vrácení programu
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+  /events/{id}:
+    get:
+      summary: Detail programové položky
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Úspěšné vrácení položky
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '400':
+          description: Neplatný formát ID
+        '404':
+          description: Položka nenalezena
+
+components:
+  schemas:
+    Festival:
+      type: object
+      properties:
+        name: { type: string }
+        edition: { type: integer }
+        location: { type: string }
+        startDate: { type: string, format: date }
+        endDate: { type: string, format: date }
+    Venue:
+      type: object
+      properties:
+        id: { type: string }
+        type: { type: string }
+        name: { type: string }
+    Performer:
+      type: object
+      properties:
+        id: { type: integer }
+        name: { type: string }
+        company: { type: string }
+        category: { type: string }
+        website: { type: string }
+    Event:
+      type: object
+      properties:
+        id: { type: string }
+        stageId: { type: string }
+        title: { type: string }
+        presenter: { type: string }
+        time: { type: string }

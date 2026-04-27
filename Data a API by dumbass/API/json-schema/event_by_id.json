@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Single Event Schema",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "stageId": { "type": "string" },
+    "title": { "type": "string" },
+    "presenter": { "type": "string" },
+    "time": { "type": "string" }
+  },
+  "required": ["id", "stageId", "title", "presenter", "time"]
+}
